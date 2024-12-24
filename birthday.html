@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Surprise</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(#99ccff, #ff99cc);
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            position: absolute;
+            top: 55%;
+            transform: translateY(-50%);
+            font-size: 4em;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93b, #6bcdfd, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 4px 4px 20px rgb(209, 202, 202);
+                transform: scale(1.1);
+            }
+        }
+
+        .cake {
+            position: absolute;
+            top: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cake img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 20px;
+            border: none;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background-color: #ff6b6b;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            bottom: -100px;
+            animation: floatUp 5s infinite ease-in;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background-color: #fff;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .balloon:nth-child(2) {
+            background-color: #ffd93b;
+            left: 20%;
+            animation-duration: 4s;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(3) {
+            background-color: #6bcdfd;
+            left: 40%;
+            animation-duration: 6s;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(4) {
+            background-color: #ff9f43;
+            left: 60%;
+            animation-duration: 5s;
+            animation-delay: 3s;
+        }
+
+        .balloon:nth-child(5) {
+            background-color: #8e44ad;
+            left: 80%;
+            animation-duration: 7s;
+            animation-delay: 4s;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            color: #fff;
+            font-size: 1em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        #surprise-btn {
+            position: absolute;
+            bottom: 15%;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: fadeIn 3s ease-in-out;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        #surprise-btn:hover {
+            background-color: #ff4757;
+            transform: scale(1.1);
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border-radius: 10px;
+            animation: popUp 0.5s ease;
+        }
+
+        @keyframes popUp {
+            from {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        #modal h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        #modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #modal button:hover {
+            background-color: #ff4757;
+        }
+
+        /* Media Queries for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            .cake img {
+                max-width: 180px;
+            }
+
+            #surprise-btn {
+                font-size: 1em;
+                bottom: 10%;
+            }
+
+            footer {
+                font-size: 0.8em;
+                bottom: 5px;
+            }
+
+            .balloon {
+                width: 40px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .cake img {
+                max-width: 150px;
+            }
+
+            #surprise-btn {
+                font-size: 0.9em;
+                bottom: 5%;
+            }
+
+            footer {
+                font-size: 0.7em;
+            }
+
+            .balloon {
+                width: 35px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cake">
+        <img src="cake.png" alt="Birthday Cake">
+    </div>
+
+    <h1>Happy Birthday!</h1>
+
+    <div class="balloon" style="left: 10%;"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <button id="surprise-btn" onclick="showModal()">Please Click Me !</button>
+
+    <div id="modal">
+        <h2>🎉 Surprise! 🎉</h2>
+        <p>Happy Birthday, Kania Dwi Rahmawati! Wishing you all the best on your special day!</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <footer>Make a wish and enjoy your special day!</footer>
+
+    <audio id="birthday-audio" src="happy-birthday-audio.mp3" autoplay loop></audio>
+
+    <script>
+        function showModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onload = function() {
+            const audio = document.getElementById('birthday-audio');
+            audio.play();
+        };
+    </script>
+</body>
+</html>
